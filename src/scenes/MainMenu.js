@@ -21,7 +21,7 @@ export class MainMenu extends Scene
 
         this.input.once('pointerdown', () => {
 
-            this.scene.start('OverlayDemo');
+            this.scene.start('Game');
 
         });
     }

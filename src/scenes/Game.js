@@ -5,24 +5,39 @@ export class Game extends Scene
     constructor ()
     {
         super('Game');
+
+        this.layout = {
+            "bookshelf-1":[146,271],
+            "bookshelf-2":[357,295],
+            "owl-perch":[930,429],
+            "telescope":[744,275],
+            "table":[727,709]
+        };
     }
 
     create ()
     {
-        this.cameras.main.setBackgroundColor(0x00ff00);
+        this.add.image(512, 384, 'escape-room-bg');
 
-        this.add.image(512, 384, 'background').setAlpha(0.5);
+        for (const [name, pos] of Object.entries(this.layout)) {
+            let s = new Phaser.GameObjects.Sprite(this, pos[0], pos[1], name).setInteractive({draggable: true});
+            s.on('drag', (pointer, dragX, dragY) => {
+                s.x = dragX;
+                s.y = dragY;
+            });
+            this.add.existing(s);
+        }
 
-        this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5);
+        // @TODO: add wizard character sprite
 
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('GameOver');
-
-        });
+        this.input.keyboard.on('keydown', (e) => {
+            let currentLayout = {};
+            this.children.list.map((s) => {
+                if (this.layout[s.texture.key]) {
+                    currentLayout[s.texture.key] = [Math.trunc(s.x), Math.trunc(s.y)];
+                }
+            });
+            console.log("this.layout = " + JSON.stringify(currentLayout) + ";");
+        }, this);
     }
 }
