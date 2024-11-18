@@ -40,6 +40,7 @@ export class Preloader extends Scene
         this.load.image('owl-perch', 'owl-perch.png');
         this.load.image('table', 'table.png');
         this.load.image('telescope', 'telescope.png');
+        this.load.image('hidden-text', 'hidden-text.png');
     }
 
     create ()
