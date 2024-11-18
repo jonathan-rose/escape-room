@@ -10,6 +10,7 @@ export default class Util {
     static colors = {
         WHITE: '0xFFFFFF',
         BLACK: '0x000000',
+        ROBE_BLUE: '0x306082',
         PARCHMENT: '0xF5ECCD',
         CHARCOAL: '0x26282C',
         BROWN: '0x482728',
