@@ -30,14 +30,13 @@ export class Game extends Scene
         }
 
         this.player = new Player(this, 256, 384, 'wizard');
-        this.add.existing(this.player);
         this.anims.create({
             key: 'wizard-idle',
             frames: this.anims.generateFrameNumbers('wizard'),
             frameRate: 10,
             repeat: -1
         });
-        this.player.anims.play('wizard-idle');
+        this.player.wizard.anims.play('wizard-idle');
 
         // this.input.keyboard.on('keydown', (e) => {
         //     let currentLayout = {};
