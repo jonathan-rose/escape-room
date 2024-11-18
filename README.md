@@ -1,4 +1,5 @@
 # Escape Room
+A single room in a wizard's tower filled with puzzles. Can you escape?
 
 ## Requirements
 
