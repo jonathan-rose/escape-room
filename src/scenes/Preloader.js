@@ -32,7 +32,7 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
-        // this.load.image('basic-wizard', 'basic-wizard.png');
+        this.load.spritesheet('wizard', 'basic-wizard.png', { frameWidth: 156, frameHeight: 168 });
         this.load.image('bookshelf-1', 'bookshelf-1.png');
         this.load.image('bookshelf-2', 'bookshelf-2.png');
         this.load.image('escape-room-bg', 'escape-room-bg.png');
