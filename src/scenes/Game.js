@@ -1,4 +1,5 @@
 import { Scene } from 'phaser';
+import Player from '../objects/Player';
 
 export class Game extends Scene
 {
@@ -21,23 +22,35 @@ export class Game extends Scene
 
         for (const [name, pos] of Object.entries(this.layout)) {
             let s = new Phaser.GameObjects.Sprite(this, pos[0], pos[1], name).setInteractive({draggable: true});
-            s.on('drag', (pointer, dragX, dragY) => {
-                s.x = dragX;
-                s.y = dragY;
-            });
+            // s.on('drag', (pointer, dragX, dragY) => {
+            //     s.x = dragX;
+            //     s.y = dragY;
+            // });
             this.add.existing(s);
         }
 
-        // @TODO: add wizard character sprite
+        this.player = new Player(this, 256, 384, 'wizard');
+        this.add.existing(this.player);
+        this.anims.create({
+            key: 'wizard-idle',
+            frames: this.anims.generateFrameNumbers('wizard'),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.player.anims.play('wizard-idle');
 
-        this.input.keyboard.on('keydown', (e) => {
-            let currentLayout = {};
-            this.children.list.map((s) => {
-                if (this.layout[s.texture.key]) {
-                    currentLayout[s.texture.key] = [Math.trunc(s.x), Math.trunc(s.y)];
-                }
-            });
-            console.log("this.layout = " + JSON.stringify(currentLayout) + ";");
-        }, this);
+        // this.input.keyboard.on('keydown', (e) => {
+        //     let currentLayout = {};
+        //     this.children.list.map((s) => {
+        //         if (this.layout[s.texture.key]) {
+        //             currentLayout[s.texture.key] = [Math.trunc(s.x), Math.trunc(s.y)];
+        //         }
+        //     });
+        //     console.log("this.layout = " + JSON.stringify(currentLayout) + ";");
+        // }, this);
+    }
+
+    update() {
+        this.player.update();
     }
 }
