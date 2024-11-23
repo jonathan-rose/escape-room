@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import Player from '../objects/Player';
+import Util from '../util';
 import HiddenText from '../objects/HiddenText';
 
 export class Game extends Scene
@@ -19,7 +20,9 @@ export class Game extends Scene
 
     create ()
     {
-        this.add.image(512, 384, 'escape-room-bg');
+        const sceneCenter = Util.sceneCenter(this);
+
+        this.add.image(sceneCenter.x, sceneCenter.y, 'escape-room-bg');
 
         for (const [name, pos] of Object.entries(this.layout)) {
             let s = new Phaser.GameObjects.Sprite(this, pos[0], pos[1], name).setInteractive({draggable: true});
@@ -31,18 +34,16 @@ export class Game extends Scene
         }
 
         this.player = new Player(this, 256, 384, 'wizard');
-        this.player.setDepth(1);
-        this.add.existing(this.player);
         this.anims.create({
             key: 'wizard-idle',
             frames: this.anims.generateFrameNumbers('wizard'),
             frameRate: 10,
             repeat: -1
         });
-        this.player.anims.play('wizard-idle');
+        this.player.wizard.anims.play('wizard-idle');
 
         // Scene, light source, radius of light source
-        this.hiddenText = new HiddenText(this, this.player, 100);
+        this.hiddenText = new HiddenText(this, this.player.wandTip, 100);
 
         // this.input.keyboard.on('keydown', (e) => {
         //     let currentLayout = {};

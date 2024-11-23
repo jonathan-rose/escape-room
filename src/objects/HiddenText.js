@@ -43,6 +43,7 @@ export default class HiddenText extends Phaser.GameObjects.Layer {
     }
 
     update() {
-        this.graphics.setPosition(this.lightSource.x, this.lightSource.y);
+        let globalPosition = this.lightSource.getBounds();
+        this.graphics.setPosition(globalPosition.centerX, globalPosition.centerY);
     }
 }
