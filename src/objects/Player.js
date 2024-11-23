@@ -5,6 +5,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, sprite);
         this.scene = scene;
 
+        // this.setDepth(1);
+
         this.velX = 0;
         this.velY = 0;
 
