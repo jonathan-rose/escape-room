@@ -41,6 +41,10 @@ export class Preloader extends Scene
         this.load.image('table', 'table.png');
         this.load.image('telescope', 'telescope.png');
         this.load.image('hidden-text', 'hidden-text.png');
+        this.load.image('starfield', 'stars.png');
+        this.load.image('star', 'star.png');
+        this.load.image('starGlow', 'starGlow.png');
+
     }
 
     create ()

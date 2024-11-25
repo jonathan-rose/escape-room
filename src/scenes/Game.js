@@ -13,7 +13,6 @@ export class Game extends Scene
             "bookshelf-1":[146,271],
             "bookshelf-2":[357,295],
             "owl-perch":[930,429],
-            "telescope":[744,275],
             "table":[727,709]
         };
     }
@@ -32,6 +31,10 @@ export class Game extends Scene
             // });
             this.add.existing(s);
         }
+
+        this.telescope = this.add.image(744, 275, 'telescope')
+            .setInteractive()
+            .on('pointerdown', () => this.showStarfield());
 
         this.player = new Player(this, 256, 384, 'wizard');
         this.anims.create({
@@ -57,5 +60,9 @@ export class Game extends Scene
 
     update() {
         this.player.update();
+    }
+
+    showStarfield() {
+        this.scene.start('Telescope');
     }
 }
