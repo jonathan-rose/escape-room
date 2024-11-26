@@ -30,8 +30,8 @@ export default class HiddenText extends Phaser.GameObjects.Layer {
                 yoyo: true,
                 loop: -1,
                 ease: 'sine.inout'
-            })
-        }) 
+            });
+        });
 
         this.add( this.hiddenText );
         this.scene.add.existing(this);
