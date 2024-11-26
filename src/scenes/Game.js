@@ -42,7 +42,8 @@ export class Game extends Scene
         });
         this.player.wizard.anims.play('wizard-idle');
 
-        this.hiddenText = new HiddenText(this);
+        // Scene, light source, radius of light source
+        this.hiddenText = new HiddenText(this, this.player.wandTip, 100);
 
         // this.input.keyboard.on('keydown', (e) => {
         //     let currentLayout = {};
@@ -57,5 +58,6 @@ export class Game extends Scene
 
     update() {
         this.player.update();
+        this.hiddenText.update();
     }
 }

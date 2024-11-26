@@ -5,6 +5,7 @@ export default class Player extends Phaser.GameObjects.Container {
     constructor(scene, x, y, sprite) {
         super(scene, x, y);
         this.scene = scene;
+        this.setDepth(1);
 
         this.wizard = new Phaser.GameObjects.Sprite(scene, 0, 0, sprite);
         this.add(this.wizard);
